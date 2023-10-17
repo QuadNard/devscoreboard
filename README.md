@@ -1,8 +1,31 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+<p align="center">
+  <a href="https://github.com/QuadNard/DevScoreBoard">
+    <img src="/public//imgs/quiz-game.png" height="210">
+    <h1 align="center"><b>DevscoreBoard !</b></h1>
+  </a>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| [Background and motivation](#background-and-motivation)
+| [Development](#development)
+
+# Background and motivation
+
+I never really got into quiz game that test developers on coding questions with a reward system that encourages the player to continue to study on typical interview and coding questions. Fastforward now I'm
+recreating it but with the focus on UX first and multiplayer last.
+
+# Roadmap
+
+As mentioned above in the disclaimer, DevscoreBoard is still a work in progress and
+is missing some features. In the following stages of development I'm planning
+to implement the following features:
+
+## Alpha
+
+- [] player animation/UX
+- [] Final win/lose page
+- [] Simple title screen with basic info (about, source code, etc.) and a start button
+- [ ] 
+- [ ] ...
+
