@@ -23,9 +23,9 @@ to implement the following features:
 
 ## Alpha
 
-- [] player animation/UX
-- [] Final win/lose page
-- [] Simple title screen with basic info (about, source code, etc.) and a start button
-- [ ] 
+- [ ] player animation/UX
+- [ ] Final win/lose page
+- [ ] Simple title screen with basic info (about, source code, etc.) and a start button
+- [ ] create multiple modals 
 - [ ] ...
 
