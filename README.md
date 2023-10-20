@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <a href="https://github.com/QuadNard/DevScoreBoard">
     <img src="/public//imgs/quiz-game.png" height="210">
@@ -26,6 +24,5 @@ to implement the following features:
 - [ ] player animation/UX
 - [ ] Final win/lose page
 - [ ] Simple title screen with basic info (about, source code, etc.) and a start button
-- [ ] create multiple modals 
+- [ ] create multiple modals
 - [ ] ...
-

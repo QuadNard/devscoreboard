@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const NotificationMenu = () => {
-    return (
-        <div className=''>
-        
-        </div>
-    )
-}
+  return <div className=""></div>;
+};
 
-export default NotificationMenu
+export default NotificationMenu;
