@@ -1,17 +1,12 @@
-import React from 'react'
-import NotificationMenu from '../components/ui/NotificationMenu'
-
-
-
-
-
+import React from 'react';
+import Modal from '../components/ui/Modal';
 
 function Quiz() {
   return (
-   <div>
-      <NotificationMenu />
-   </div>
-  )
+    <div className="flex min-h-screen flex-col">
+      <Modal />
+    </div>
+  );
 }
 
-export default Quiz
+export default Quiz;
