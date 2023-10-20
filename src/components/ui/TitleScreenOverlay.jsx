@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, spring } from 'framer-motion';
 
-export default function TitleScreenOverlay() {
+export default function TitleScreenOverlay(props) {
   const [logoClicks, setLogoClicks] = useState(0);
+  const QuizModes = props.getQuizModes();
 
   return (
     <motion.div
@@ -37,7 +38,21 @@ export default function TitleScreenOverlay() {
           </p>
         </div>
         <div className="flex items-center justify-center gap-4">
+          <div>
+            <select
+              value={props.selectedQuizMode}
+              onChange={(e) => props.selectQuizMode(e.target.value)}
+              className="rounded-xl"
+            >
+              {QuizModes.map((mode) => (
+                <option key={mode} value={mode}>
+                  {mode}
+                </option>
+              ))}
+            </select>
+          </div>
           <motion.button
+            onClick={() => props.handleStartQuiz()}
             initial={{ y: 80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'spring', delay: 1.1, damping: 12 }}
@@ -45,6 +60,7 @@ export default function TitleScreenOverlay() {
           >
             Start
           </motion.button>
+
           <motion.a
             href="/"
             target="_blank"
