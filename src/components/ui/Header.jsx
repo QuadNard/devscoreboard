@@ -1,6 +1,10 @@
 import React from 'react';
 
+
 const Header = (props) => {
+  
+  
+
   return (
     <div className="flex flex-row items-center justify-between">
       <h1 className="text-white">Level: {props.playerLevel}</h1>
