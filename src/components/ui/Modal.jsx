@@ -1,8 +1,51 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Modal() {
-  let [question, setQuestion] = useState(1);
+  const [question, setQuestion] = useState(1);
+  // Initialize the countdown timer with an initial value of 10 seconds + 1 (to account for the initial rendering)
+  const time = 10;
+  const [seconds, setSeconds] = useState(time + 1);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+
+  // useEffect to update the countdown every second
+  useEffect(() => {
+    // Exit the effect if the countdown is already at 0 or the quiz is completed
+    if (seconds == 0 || quizCompleted) return;
+
+    // Set up a timer to decrement the countdown every second (which is 1000 ms)
+    const timer = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds - 1);
+    }, 1000);
+
+    console.log(seconds);
+
+    // Check if the countdown reaches 1 second and trigger the next question
+    // Count never reaches 0, so I check for 1. I just added 1 to the seconds useState to account for this
+    if (seconds == 1) {
+      handleNextQuestion();
+    }
+
+    // Cleanup the timer on component unmount or when the countdown is completed
+    return () => {
+      clearInterval(timer);
+    };
+  }, [seconds, handleNextQuestion, quizCompleted]);
+
+  function handleNextQuestion() {
+    // Check if it's the last question, set quizCompleted to true, otherwise move to the next question
+    if (question === 6) {
+      setQuizCompleted(true);
+    } else {
+      setQuestion(question > 6 ? question : question + 1);
+    }
+
+    // Log 'Next' to the console to know when function is called + question changes
+    console.log('Next');
+
+    // Reset the countdown to the initial value (time seconds + 1)
+    setSeconds(time + 1);
+  }
 
   return (
     <div className="mt-24 mx-auto w-full max-w-md rounded-2xl bg-white">
@@ -13,6 +56,7 @@ export default function Modal() {
         <Quest question={4} currentQuestion={question} />
         <Quest question={5} currentQuestion={question} />
         <Quest question={6} currentQuestion={question} />
+        <div>{!quizCompleted ? seconds - 1 : ''}</div>
       </div>
       <div className="px-8 pb-8">
         <div>
@@ -27,16 +71,14 @@ export default function Modal() {
         <div className="mt-10 flex justify-between">
           <button
             onClick={() => setQuestion(question < 2 ? question : question - 1)}
-            className="rounded px-2 py-1 text-slate-400 hover:text-slate-700"
-          >
+            className="rounded px-2 py-1 text-slate-400 hover:text-slate-700">
             Back
           </button>
           <button
-            onClick={() => setQuestion(question > 6 ? question : question + 1)}
+            onClick={handleNextQuestion}
             className={`${
               question > 6 ? 'pointer-events-none opacity-50' : ''
-            } bg flex items-center justify-center rounded-full bg-blue-500 py-1.5 px-3.5 font-medium tracking-tight text-white hover:bg-blue-600 active:bg-blue-700`}
-          >
+            } bg flex items-center justify-center rounded-full bg-blue-500 py-1.5 px-3.5 font-medium tracking-tight text-white hover:bg-blue-600 active:bg-blue-700`}>
             Submit
           </button>
         </div>
@@ -64,8 +106,7 @@ function Quest({ question, currentQuestion }) {
       <motion.div
         variants={backgroundVariants}
         transition={backgroundTransition}
-        className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-slate-400 bg-white font-semibold text-slate-500"
-      >
+        className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-slate-400 bg-white font-semibold text-slate-500">
         <div className="relative flex items-center justify-center">
           <AnimatePresence>
             {status === 'correct' ? (
@@ -75,8 +116,7 @@ function Quest({ question, currentQuestion }) {
                 key="question"
                 animate={{ opacity: 1 }}
                 exit={{ scale: 0.5, opacity: 0 }}
-                className="absolute"
-              >
+                className="absolute">
                 {question}
               </motion.span>
             )}
@@ -94,8 +134,7 @@ function CheckIcon(props) {
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      strokeWidth={3}
-    >
+      strokeWidth={3}>
       <motion.path
         variants={checkIconVariants}
         transition={checkIconTransition}
